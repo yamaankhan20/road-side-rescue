@@ -64,7 +64,7 @@
                 @if (Auth::user()->role === "admin")
                     <li class="breadcrumb-item"><a href="{{ route('admindashboard') }}"> <i data-feather="home"> </i></a></li>
                 @elseif(Auth::user()->role === "vendor")
-                    <li class="breadcrumb-item"><a href="{{ route('Vendordashboard') }}"> <i data-feather="home"> </i></a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('vendordashboard') }}"> <i data-feather="home"> </i></a></li>
                 @endif
               <li class="breadcrumb-item f-w-400">Dashboard</li>
               <li class="breadcrumb-item f-w-400 active">{{ $breadcrumb }}</li>
@@ -186,7 +186,7 @@
                       </svg><span class="lan-3">Dashboard </span></a>
                     <ul class="sidebar-submenu">
                         @if (Auth::user()->role === "vendor")
-                            <li><a class="lan-4" href="{{ route('Vendordashboard') }}">Dashboard</a></li>
+                            <li><a class="lan-4" href="{{ route('vendordashboard') }}">Dashboard</a></li>
                         @elseif(Auth::user()->role === "admin")
                             <li><a class="lan-4" href="{{ route('admindashboard') }}">Dashboard</a></li>
                         @endif

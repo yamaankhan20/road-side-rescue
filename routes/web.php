@@ -46,15 +46,16 @@ Route::middleware([AdminMiddleware::class])->group(function () {
 
 
 Route::middleware([VendorMiddleware::class])->group(function () {
-    Route::get('/vendor-dashboard', [VendorController::class, 'dashboard'])->name('Vendordashboard');
+    Route::get('/vendor-dashboard', [VendorController::class, 'dashboard'])->name('vendordashboard');
     Route::get('/vendor/chat/private-chat', [VendorController::class, 'private_chat'])->name('vendor_private_chat');
 
     Route::get('services', [ServiceController::class, 'index'])->name('services.index');
     Route::get('services/create', [ServiceController::class, 'create'])->name('services.create');
     Route::post('services/store', [ServiceController::class, 'store'])->name('services.store');
-    Route::get('services/{services}/edit', [ServiceController::class, 'edit'])->name('services.edit');
-    Route::put('services/{services}', [ServiceController::class, 'update'])->name('services.update');
-    Route::delete('services/{services}', [ServiceController::class, 'destroy'])->name('services.destroy');
+    Route::get('services/{service}/edit', [ServiceController::class, 'edit'])->name('services.edit');
+    Route::put('services/{service}', [ServiceController::class, 'update'])->name('services.update');
+    Route::delete('services/{service}', [ServiceController::class, 'destroy'])->name('services.destroy');
+
 });
 
 

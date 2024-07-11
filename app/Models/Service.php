@@ -11,7 +11,8 @@ class Service extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['category_id', 'name', 'description', 'price'];
+    protected  $table = "services";
+    protected $fillable = ['id', 'category_id', 'name', 'description', 'price', 'vendor_id'];
 
     public function category()
     {
