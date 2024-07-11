@@ -241,7 +241,7 @@
                                     <use href="{{ asset('backend_assets/svg/icon-sprite.svg#fill-user') }}"></use>
                                 </svg><span>Services</span></a>
                             <ul class="sidebar-submenu ">
-                                <li><a href="{{ route('categories.create') }}">Service Create</a></li>
+                                <li><a href="{{ route('services.create') }}">Service Create</a></li>
                                 <li><a href="{{ route('services.index') }}">Service Lists</a></li>
                             </ul>
                         </li>

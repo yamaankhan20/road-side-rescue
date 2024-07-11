@@ -50,12 +50,11 @@ Route::middleware([VendorMiddleware::class])->group(function () {
     Route::get('/vendor/chat/private-chat', [VendorController::class, 'private_chat'])->name('vendor_private_chat');
 
     Route::get('services', [ServiceController::class, 'index'])->name('services.index');
-
-//    Route::get('categories/create', [CategoryController::class, 'create'])->name('categories.create');
-//    Route::post('categories/store', [CategoryController::class, 'store'])->name('categories.store');
-//    Route::get('categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
-//    Route::put('categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
-//    Route::delete('categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+    Route::get('services/create', [ServiceController::class, 'create'])->name('services.create');
+    Route::post('services/store', [ServiceController::class, 'store'])->name('services.store');
+    Route::get('services/{services}/edit', [ServiceController::class, 'edit'])->name('services.edit');
+    Route::put('services/{services}', [ServiceController::class, 'update'])->name('services.update');
+    Route::delete('services/{services}', [ServiceController::class, 'destroy'])->name('services.destroy');
 });
 
 
