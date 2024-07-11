@@ -1,0 +1,809 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+/*/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Normalize
+# Typography
+# Elements
+# Forms
+# Navigation
+  ## Links
+  ## Menus
+# Accessibility
+# Alignments
+# Clearings
+# Widgets
+# Content
+  ## Posts and pages
+  ## Comments
+# Infinite scroll
+# Media
+  ## Captions
+  ## Galleries
+## Bootstrap Sameheight
+## Miscellaneous
+## Font Fix Screen
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# Normalize
+--------------------------------------------------------------*/
+html {
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  font-family: 'Poppins',sans-serif;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  vertical-align: baseline;
+}
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+[hidden],
+template {
+  display: none;
+}
+a {
+  background-color: transparent;
+}
+a:active,
+a:hover {
+  outline: 0;
+}
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+b,
+strong {
+  font-weight: bold;
+}
+dfn {
+  font-style: italic;
+}
+mark {
+  background: #ff0;
+  color: #000;
+}
+small {
+  font-size: 80%;
+}
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+img {
+  border: 0;
+}
+svg {
+  display: block;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+figure {
+  margin: 1em 40px;
+}
+hr {
+  box-sizing: content-box;
+  height: 0;
+}
+pre {
+  overflow: auto;
+}
+code,
+kbd,
+pre,
+samp,
+tt,
+var {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+button {
+  overflow: visible;
+}
+button,
+select {
+  text-transform: none;
+}
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+input {
+  line-height: normal;
+}
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+legend {
+  border: 0;
+  padding: 0;
+}
+textarea {
+  overflow: auto;
+}
+optgroup {
+  font-weight: bold;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+td,
+th {
+  padding: 0;
+}
+/*--------------------------------------------------------------
+# Typography
+--------------------------------------------------------------*/
+p {
+  margin-bottom: 1.5em;
+}
+dfn,
+cite,
+em {
+  font-style: italic;
+}
+cite {
+  font-weight: 600;
+}
+blockquote {
+  margin: 0 1.5em 20px;
+  border-color: #111111;
+}
+address {
+  margin: 0 0 1.5em;
+}
+pre {
+  background: #eee;
+  font-family: "Courier 10 Pitch", Courier, monospace;
+  line-height: 1.6;
+  margin-bottom: 1.6em;
+  max-width: 100%;
+  overflow: auto;
+  padding: 1.6em;
+}
+abbr,
+acronym {
+  border-bottom: 1px dotted #666;
+  cursor: help;
+}
+mark,
+ins {
+  background: #fff9c0;
+  text-decoration: none;
+}
+big {
+  font-size: 125%;
+}
+/*--------------------------------------------------------------
+# Elements
+--------------------------------------------------------------*/
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  /* Inherit box-sizing to make it easier to change the property for components that leverage other behavior; see http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
+  box-sizing: inherit;
+}
+body {
+  background: #fff;
+  /* Fallback for when there is no custom background color defined. */
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+}
+blockquote,
+q {
+  quotes: "" "";
+}
+hr {
+  background-color: #ccc;
+  border: 0;
+  height: 1px;
+  margin-bottom: 1.5em;
+}
+ul,
+ol {
+  margin: 0 0 1em 1em;
+  padding-left: 20px;
+}
+ul {
+  list-style: disc;
+}
+ol {
+  list-style: decimal;
+}
+li > ul,
+li > ol {
+  margin-bottom: 0;
+  margin-left: 1.5em;
+}
+dt {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+dd {
+  margin: 0 1.5em 1.5em;
+}
+img {
+  height: auto;
+  /* Make sure images are scaled correctly. */
+  max-width: 100%;
+  /* Adhere to container width. */
+}
+figure {
+  margin: 1em 0;
+  /* Extra wide images within figure tags don't overflow the content area. */
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 15px 0;
+  width: 100%;
+}
+table th,
+table td {
+  border: 1px solid #dedede;
+  padding: 5px;
+  text-align: center;
+}
+/*--------------------------------------------------------------
+# Forms
+--------------------------------------------------------------*/
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  background-color: #111111;
+  border: medium none;
+  color: #fff;
+  padding: 2px 15px;
+}
+button:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:hover,
+input[type="button"]:active,
+input[type="reset"]:active,
+input[type="submit"]:active {
+  background-color: #000;
+}
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="range"],
+input[type="date"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="color"],
+textarea {
+  color: #666;
+  border: 1px solid #ccc;
+}
+select {
+  border: 1px solid #ccc;
+}
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="number"]:focus,
+input[type="tel"]:focus,
+input[type="range"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="week"]:focus,
+input[type="time"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="color"]:focus,
+textarea:focus {
+  color: #111;
+}
+textarea {
+  width: 100%;
+}
+form.post-password-form label > input {
+  background: #f8f8f8;
+  border: 1px solid #dcdcdc;
+  padding: 10px 8px;  
+}
+form.post-password-form input {
+  padding: 11px 15px;
+  font-weight: 700;
+}
+/*--------------------------------------------------------------
+## Links
+--------------------------------------------------------------*/
+a:link,
+a:visited {
+  transition: all 0.3s ease 0s;
+  text-decoration: none;
+}
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+}
+a:focus {
+  outline: thin dotted;
+}
+a:hover,
+a:active {
+  outline: 0;
+}
+/*-------------------------------------------------------------
+                CUSTOM CSSS START  
+--------------------------------------------------------------*/
+header#masthead {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 9;
+  padding: 30px 0;
+}
+.xtra_links a {
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  line-height: 25px;
+  color: #000;
+}
+.xtra_links .signup {
+  background: #AA3D3D;
+  color: #fff;
+  padding: 12px 30px;
+  border-radius: 5px;
+  margin-left: 30px;
+}
+.vc_banner {
+  position: relative;
+  z-index: 1;
+  font-weight: 700;
+  text-shadow: 0px 6px 0px BLACK;
+  padding: 0;
+  margin-bottom: 35px;
+}
+.vc_banner:before {
+  content: '';
+  width: 762px;
+  height: 178px;
+  background: url('../images/vc_banner.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  position: absolute;
+  left: -70px;
+  top: -30px;
+  z-index: -1;
+}
+.bn_form .form-control {
+  height: 60px;
+  background: #fff;
+  border: none;
+  border-radius: 5px;
+  box-shadow: none;
+  outline: none;
+  color: #878787;
+  padding: 0 20px;
+  font-size: 18px;
+}
+.bn_form .form-control::placeholder {
+  color: #878787;
+}
+.bn_form .loct .form-control {
+  padding-left: 48px;
+}
+.secBanner .bn_form .form { display: flex;flex-wrap: wrap;}
+.bn_form .field.loct {
+  max-width: 65%;
+  flex: 65%;
+  padding-right: 10px;
+  position: relative;
+}
+.bn_form .field.srv {
+  max-width: 35%;
+  flex: 35%;
+}
+.bn_form .btn_bn {
+  padding: 18px 36px;
+  background: #aa3d3d;
+  border-radius: 5px;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  color: #fff;
+  font-size: 18px;
+  line-height: 25px;
+  margin-top: 50px;
+}
+.bn_form .field.loct:before {
+  content: '\f3c5';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 600;
+  color: #787878;
+  position: absolute;
+  left: 18px;
+  top: 18px;
+  font-size: 18px;
+  pointer-events: none;
+}
+.secBanner {
+  padding-top: 180px;
+  padding-bottom: 103px;
+  background-size: cover;
+  background-position: center;
+}
+.secBanner:after {
+  content: '';
+  width: 100%;
+  height: 317px;
+  background: url('../images/vc_head.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  position: absolute;
+  bottom: -80px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: -1;
+  opacity: 0.5;
+}
+.secBanner .info h1 {
+  color: #fff;
+  font-size: 54px;
+  line-height: 60px;
+  font-weight: 700;
+}
+.secBanner .info p {
+  font-size: 18px;
+  line-height: 34px;
+  color: #000;
+}
+.bn_img {
+  margin-right: -250px;
+}
+.secBanner .row {
+  align-items: center;
+}
+.navbar-expand-xl .navbar-nav .nav-link {
+  color: #3B3B3B;
+  padding: 0;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+  transition: all 0.4s ease-in-out !important;
+}
+.navbar-expand-xl .navbar-nav li:not(:first-child) {
+  margin-left: 38px;
+}
+.navbar-expand-xl .navbar-nav .nav-link:hover {
+  color: #aa3d3d;
+}
+.btn-custom {
+  background: #AA3D3D;
+  color: #fff !important;
+  padding: 18px 30px;
+  font-size: 18px;
+  border-radius: 5px;
+  display: inline-block;
+  text-decoration: none;
+}
+.txt h2 {
+  font-size: 54px;
+  line-height: 60px;
+  color: #000;
+  font-weight: 600;
+}
+.secAbout,.secService,.secStore {
+  padding-top: 120px;
+  padding-bottom: 120px;
+  background-size: cover;
+  background-position: center;
+}
+.svBox {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+}
+.svBox .thumb {
+  margin-bottom: 26px;
+  min-height: 77px;
+}
+.svBox .ctn h3 {
+  margin-top: 0;
+  font-size: 30px;
+  line-height: 43px;
+  color: #000;
+  margin-bottom: 15px;
+}
+.svBox .ctn p {
+  font-size: 18px;
+  line-height: 34px;
+  color: #9D9D9D;
+  margin-bottom: 20px;
+}
+.svBox .ctn .read_more {
+  color: #000;
+  font-size: 18px;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-block;
+}
+.srvGrids .col-12.col-md-4 {
+  margin-bottom: 50px;
+}
+.secService .txt {
+  margin-bottom: 40px;
+}
+.secStore .row {
+  padding: 57px 30px;
+  border-radius: 20px;
+  background-color: #e1e1e1;
+} 
+.secStore .txt p {
+  padding-right: 9%;
+  color: #888888;
+}
+.secStore .txt h2 {
+  margin-bottom: 20px;
+  line-height: 70px;
+}
+.btn_download .btn-custom {
+  position: relative;
+  padding: 31px 24px 11px 67px;
+  min-width: 217px;
+}
+.btn_download .btn-custom .icon {
+  position: absolute;
+  left: 22px;
+  top: 18px;
+  font-size: 34px;
+}
+.btn_download .btn-custom .text {
+  position: absolute;
+  top: 15px;
+  font-size: 14px;
+  left: 69px;
+  line-height: 1;
+}
+.btn_download .btn-custom.apple .text {
+  left: 67px;
+}
+.btn_download .btn-custom.apple {
+  padding-left: 67px;
+  margin-left: 30px;
+}
+.secLoct {
+  height: 722px;
+  background-size: cover;
+  background-position: center;
+}
+.footer-widget {
+  background: #D2AC88;
+  padding: 80px 0;
+}
+.col_full h2 {
+  font-size: 54px;
+  line-height: 76px;
+  font-weight: 600;
+  margin-bottom: 40px;
+  color: #000;
+}
+.newsletter .form-control {
+border: none;
+background: transparent;
+border-bottom: 1px solid #000;
+border-radius: 0;
+color: #636363;
+font-size: 18px;
+padding: 10px 0;
+box-shadow: none;
+outline: none;
+margin-bottom: 40px;
+}
+.newsletter .form-control::placeholder {
+color: #636363;
+}
+.newsletter .btn-custom {
+  background: #AA3D3D !important;
+  padding: 18px 53px;
+}
+.col_full {
+  margin-bottom: 46px;
+}
+.footer-widget .row .col-12:first-child {
+  padding-right: 60px;
+}
+.footer-widget .row .col-12:nth-child(2) {
+  padding-left: 90px;
+  padding-right: 90px;
+  border-left: 1px solid #585858;
+  border-right: 1px solid #585858;
+}
+.footer-widget .row .col-12:last-child {
+  padding-left: 90px;
+}
+.footer-widget .widget h3 {
+  margin-top: 0;
+  margin-bottom: 27px;
+  color: #000;
+  font-size: 30px;
+  line-height: 43px;
+  font-weight: 500;
+}
+.footer-widget .widget ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer-widget .widget ul li {
+  font-size: 18px;
+  line-height: 40px;
+  color: #504E4E;
+}
+.footer-widget .widget ul li a {
+  color: #504E4E;
+  display: inline-block;
+  text-decoration: none;
+}
+.footer-widget .widget p {
+  color: #504E4E;
+  margin: 0;
+}
+.footer {
+  background: #d2ac88;
+}
+.site-info {
+  padding: 25px 0;
+  text-align: center;
+  border-top: 1px solid #585858;
+  font-size: 18px;
+  line-height: 25px;
+  color: #000;
+}
+.site-info a {
+  color: #AA3D3D !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/*-------------------------------------------------------------
+                CUSTOM CSSS END  
+--------------------------------------------------------------*/
+
+.ft-18 {
+  font-size: 18px;
+  line-height: 34px;
+}
+
+.clr-white {
+  color: #fff;
+}
+
+@media (min-width: 1400px) {
+  .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+      max-width: 1200px;
+  }
+}
+
+
+@media screen and (max-width: 1700px) {
+  .bn_img {
+    margin-right: -200px;
+  }
+}
+
+@media screen and (max-width: 1620px) {
+  .bn_img {
+    margin-right: -200px;
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  .bn_img {
+    margin-right: -100px;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .secBanner .info h1 {
+    font-size: 48px;
+    line-height: 54px;
+  }
+  .vc_banner:before {
+    left: -80px;
+    top: -33px;
+    width: 712px;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .bn_img {
+    margin-right: -50px;
+  }
+}
