@@ -13,7 +13,6 @@ use App\Http\Controllers\MailController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\VendorMiddleware;
 use App\Http\Middleware\UserMiddleware;
-
 /*
 ================================
         FRONTEND ROUTES
@@ -68,7 +67,7 @@ Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logou
 
 Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 // Route::post('register', [RegisterController::class, 'register'])->name('register.submit');
-Route::get('/verification/{id}',[RegisterController::class,'verification']);
+Route::get('/verification',[RegisterController::class,'verification'])->name('verification');
 Route::post('/verified',[RegisterController::class,'verifiedOtp'])->name('verifiedOtp');
 Route::get('/resend-otp',[RegisterController::class,'resendOtp'])->name('resendOtp');
 

@@ -31,6 +31,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\UserMiddleware::class,
     ];
     protected $routeMiddleware = [
+        'pause.login' => \App\Http\Middleware\PauseLoginProcess::class,
 //        'admin' => \App\Http\Middleware\AdminMiddleware::class,
 //        'vendor' => \App\Http\Middleware\VendorMiddleware::class,
 //        'user' => \App\Http\Middleware\UserMiddleware::class,

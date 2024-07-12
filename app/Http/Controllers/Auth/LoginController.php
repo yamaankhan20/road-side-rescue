@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -36,17 +38,52 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+//        $this->middleware(PauseLoginProcess::class)->only('login');
     }
 
 
     protected function authenticated(Request $request, $user)
     {
-        if ($user->isAdmin()) {
-            return redirect()->route('admindashboard');
-        } elseif ($user->isVendor()) {
-            return redirect()->route('admindashboard');
+
+//        if ($user->is_verified === 1) {
+//            if ($user->isAdmin()) {
+//                return redirect()->route('admindashboard');
+//            } elseif ($user->isVendor()) {
+//                return redirect()->route('vendordashboard');
+//            } else {
+//                return redirect()->route('userdashboard');
+//            }
+//        } else {
+//            return redirect()->route('verification');
+//        }
+
+    }
+
+    public function login(Request $request){
+
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (auth()->attempt($request->only('email', 'password'))) {
+            $user = Auth::user();
+            if($user->is_verified === 1){
+                if ($user-> role === 'admin') {
+                    return redirect()->route('admindashboard');
+                } elseif ($user-> role === 'vendor') {
+                    return redirect()->route('vendordashboard');
+                } else {
+                    return redirect()->route('admindashboard');
+                }
+            }else {
+                session(['User_id' => $user->id]);
+                auth()->logout();
+                return redirect()->route("verification");
+            }
+
         } else {
-            return redirect()->route('admindashboard');
+            return redirect()->route("adminlogin")->with("email", "Wrong Email Or Password");
         }
     }
 

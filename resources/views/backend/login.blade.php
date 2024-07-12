@@ -57,7 +57,12 @@
                   <div class="form-group">
                     <label class="col-form-label">Email Address</label>
                     <input class="form-control" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Test@gmail.com">
-                    @error('email')
+                      @if (session('email'))
+                          <span class="" role="alert">
+                            <strong> {{ session('email') }}</strong>
+                        </span>
+                      @endif
+                      @error('email')
                         <span class="" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

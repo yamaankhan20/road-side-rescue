@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Models\EmailVerification;
 use Mail;
 use App\Mail\Mailing;
+use Session;
 
 class RegisterController extends Controller
 {
@@ -58,8 +59,8 @@ class RegisterController extends Controller
 
         // Log the user in after registration
         // auth()->login($user);
-
-        return redirect("/verification/".$user->id);
+        session(['User_id' => $user->id]);
+        return redirect()->route("verification");
         // Redirect based on role
         // if ($user->role == 'admin') {
         //     return redirect()->route('admindashboard');
@@ -116,13 +117,13 @@ class RegisterController extends Controller
         //     $message->to($data['email'])->subject($data['title']);
         // });
     }
-    public function verification($id)
+    public function verification()
     {
-
+        $id = Session::get('User_id');
         $user = User::where('id',$id)->first();
         if (!$user) {
             // Handle the case where the user is not found
-            return redirect(route("adminlogin"))->with('verify', 'Not Allowed To Access This Page.');
+            return redirect()->route("adminlogin")->with('verify', 'Not Allowed To Access This Page.');
         }
 
         if (Auth::check() && $user->is_verified == 1) {
@@ -130,14 +131,15 @@ class RegisterController extends Controller
             if ($user->role == 'admin') {
                 return redirect()->route('admindashboard');
             } elseif ($user->role == 'vendor') {
-                return redirect()->route('Vendordashboard');
+                return redirect()->route('vendordashboard');
             } else {
                 return redirect()->route('admindashboard');
             }
 
-        }elseif (!Auth::check() && $user->is_verified == 1){
-            return redirect()->route('adminlogin')->with('verify', 'Please login To proceed You are Already Verified.');
         }
+//        elseif (!Auth::check() && $user->is_verified == 1){
+//            return redirect()->route('adminlogin')->with('verify', 'Please login To proceed You are Already Verified.');
+//        }
 
         $email = $user->email;
 
@@ -154,7 +156,7 @@ class RegisterController extends Controller
         $user = User::where('email',$request->email)->first();
         $otpData = EmailVerification::where('otp',$request->otp)->first();
         if(!$otpData){
-            return redirect("/verification/".$user->id)->with("wrong_opt", 'You entered wrong OTP');
+            return redirect()->route("verification")->with("wrong_opt", 'You entered wrong OTP');
             // return response()->json(['success' => false,'msg'=> 'You entered wrong OTP']);
         }
         else{
@@ -170,13 +172,14 @@ class RegisterController extends Controller
                 if ($user->role == 'admin') {
                     return redirect()->route('admindashboard');
                 } elseif ($user->role == 'vendor') {
-                    return redirect()->route('admindashboard');
+                    return redirect()->route('vendordashboard');
                 } else {
                     return redirect()->route('admindashboard');
                 }
+                $request->session()->forget('User_id');
             }
             else{
-                return redirect("/verification/".$user->id)->with("expired", 'Your OTP has been Expired');
+                return redirect()->route("verification")->with("expired", 'Your OTP has been Expired');
                 // return response()->json(['success' => false,'msg'=> ]);
             }
 
@@ -191,13 +194,13 @@ class RegisterController extends Controller
         $time = $otpData->created_at;
 
         if($currentTime >= $time && $time >= $currentTime - (30)){
-            return redirect("/verification/".$user->id)->with("no_time", 'Please try after some time');
+            return redirect()->route("verification")->with("no_time", 'Please try after some time');
             // return response()->json(['success' => false,'msg'=> 'Please try after some time']);
         }
         else{
             session(['otp_sent' => false]);
             $this->sendOtp($user);//OTP SEND
-            return redirect("/verification/".$user->id)->with("Send_otp", 'OTP has been sent');
+            return redirect()->route("verification")->with("Send_otp", 'OTP has been sent');
             // return response()->json(['success' => true,'msg'=> 'OTP has been sent']);
         }
 
