@@ -19,6 +19,6 @@ class UserMiddleware
         if (Auth::check() && Auth::user()->role == 'user') {
             return $next($request);
         }
-        return redirect('/user-login');
+        return redirect('/user-login')->with("verify", "You're not authorized to access this page");
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\UserDetails;
+use App\Models\UserProfilepic;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -57,18 +59,9 @@ class RegisterController extends Controller
 
         $user = $this->create($request->all());
 
-        // Log the user in after registration
-        // auth()->login($user);
         session(['User_id' => $user->id]);
         return redirect()->route("verification");
-        // Redirect based on role
-        // if ($user->role == 'admin') {
-        //     return redirect()->route('admindashboard');
-        // } elseif ($user->role == 'vendor') {
-        //     return redirect()->route('admindashboard');
-        // } else {
-        //     return redirect()->route('admindashboard');
-        // }
+
     }
 
     protected function validator(array $data)
@@ -83,12 +76,22 @@ class RegisterController extends Controller
 
     protected function create(array $data)
     {
-        return User::create([
+        $user_data = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'role' => $data['role'],
         ]);
+
+        $user_details = new UserDetails();
+        $user_details->user_id = $user_data->id;
+        $user_details->save();
+
+        $user_pic = new UserProfilepic();
+        $user_pic->user_id = $user_data->id;
+        $user_pic->save();
+
+        return $user_data;
     }
 
      public function sendOtp($user)
@@ -133,7 +136,7 @@ class RegisterController extends Controller
             } elseif ($user->role == 'vendor') {
                 return redirect()->route('vendordashboard');
             } else {
-                return redirect()->route('admindashboard');
+                return redirect()->route('userdashboard');
             }
 
         }
@@ -174,7 +177,7 @@ class RegisterController extends Controller
                 } elseif ($user->role == 'vendor') {
                     return redirect()->route('vendordashboard');
                 } else {
-                    return redirect()->route('admindashboard');
+                    return redirect()->route('userdashboard');
                 }
                 $request->session()->forget('User_id');
             }

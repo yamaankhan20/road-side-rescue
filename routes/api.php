@@ -6,8 +6,13 @@ use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\RegisterController;
 use App\Http\Controllers\API\CategoriesController;
 use App\Http\Controllers\API\ServiceController;
+use App\Http\Controllers\API\CountriesController;
 
 
+
+
+Route::post('/get-cities', [CountriesController::class, 'get_cities_by_country'])->name('get-cities');
+Route::get('/get-countries', [CountriesController::class, 'get_all_countries'])->name('get-country');
 
 Route::prefix('auth')->group(function () {
     Route::post("/login" , [LoginController::class,'login']);
@@ -23,15 +28,15 @@ Route::prefix('otp')->group(function () {
 
 
 Route::prefix('categories')->group(function () {
-    Route::post("/all-categories" , [CategoriesController::class,'index']);
+    Route::get("/all-categories" , [CategoriesController::class,'index']);
     Route::post("/create-category" , [CategoriesController::class,'create']);
     Route::delete("/delete-category/{category}" , [CategoriesController::class,'delete']);
     Route::put("/update-category/{category}" , [CategoriesController::class,'update']);
 });
 
 
-Route::prefix('/vender/services')->group(function () {
-    Route::post("/all-services" , [ServiceController::class,'index']);
+Route::prefix('/vendor/services')->group(function () {
+    Route::get("/all-services" , [ServiceController::class,'index']);
     Route::post("/create-services" , [ServiceController::class,'create']);
     Route::delete("/delete-services/{service}" , [ServiceController::class,'delete']);
     Route::put("/update-services/{service}" , [ServiceController::class,'update']);

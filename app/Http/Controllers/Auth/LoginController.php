@@ -74,7 +74,7 @@ class LoginController extends Controller
                 } elseif ($user-> role === 'vendor') {
                     return redirect()->route('vendordashboard');
                 } else {
-                    return redirect()->route('admindashboard');
+                    return redirect()->route('userdashboard');
                 }
             }else {
                 session(['User_id' => $user->id]);

@@ -38,8 +38,15 @@
     <link id="color" rel="stylesheet" href="{{ asset('backend_assets/css/color-1.css') }}" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('backend_assets/css/responsive.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   </head>
   <body>
+      <style>
+          .logo-icon-wrapper a {
+                color: #fff;
+                font-size: 29px;
+            }
+      </style>
     <div class="loader-wrapper">
       <div class="loader loader-1">
         <div class="loader-outter"></div>
@@ -54,9 +61,14 @@
     <!-- page-wrapper Start-->
     <div class="page-wrapper compact-wrapper" id="pageWrapper">
       <div class="page-header row">
-        <div class="header-logo-wrapper col-auto">
-          <div class="logo-wrapper"><a href="index.html"><img class="img-fluid for-light" src="{{ asset('backend_assets/images/logo/logo.png') }}" alt=""/><img class="img-fluid for-dark" src="{{ asset('backend_assets/') }}images/logo/logo_light.png" alt=""/></a></div>
-        </div>
+        <!--<div class="header-logo-wrapper col-auto">-->
+        <!--  <div class="logo-wrapper">-->
+        <!--      <a href="index.html">-->
+        <!--          <img class="img-fluid for-light" src="{{ asset('backend_assets/images/logo/logo.png') }}" alt=""/>-->
+        <!--          <img class="img-fluid for-dark" src="{{ asset('backend_assets/') }}images/logo/logo_light.png" alt=""/>-->
+        <!--      </a>-->
+        <!--  </div>-->
+        <!--</div>-->
         <div class="col-4 col-xl-4 page-title">
           <h4 class="f-w-700">Welcome to {{ config('app.name') }}</h4>
           <nav>
@@ -110,10 +122,7 @@
                     </div>
                   </div>
                   <ul class="profile-dropdown onhover-show-div">
-                    <li><a href="private-chat.html"><i data-feather="user"></i><span>Account </span></a></li>
-                    <li><a href="letter-box.html"><i data-feather="mail"></i><span>Inbox</span></a></li>
-                    <li><a href="task.html"><i data-feather="file-text"></i><span>Taskboard</span></a></li>
-                    <li><a href="edit-profile.html"><i data-feather="settings"></i><span>Settings</span></a></li>
+
                     <li>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
@@ -148,7 +157,7 @@
         <!-- Page Sidebar Start-->
         <div class="sidebar-wrapper" data-layout="stroke-svg">
           <div>
-            <div class="logo-wrapper"><a href="index.html"><img class="img-fluid" src="{{ asset('frontend_assets/images/logo.png') }}" alt=""></a>
+            <div class="logo-wrapper"><a href="{{route('frontendhome')}}"><img class="img-fluid" src="{{ asset('frontend_assets/images/logo.png') }}" alt=""></a>
               <div class="back-btn"><i class="fa fa-angle-left"></i></div>
               <div class="toggle-sidebar">
                 <svg class="stroke-icon sidebar-toggle status_toggle middle">
@@ -159,7 +168,7 @@
                 </svg>
               </div>
             </div>
-            <div class="logo-icon-wrapper"><a href="index.html"><img class="img-fluid" src="{{ asset('backend_assets/images/logo/logo-icon.png') }}" alt=""></a></div>
+            <div class="logo-icon-wrapper"><a href="{{route('frontendhome')}}">R</a></div>
             <nav class="sidebar-main">
               <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
               <div id="sidebar-menu">
@@ -187,8 +196,13 @@
                     <ul class="sidebar-submenu">
                         @if (Auth::user()->role === "vendor")
                             <li><a class="lan-4" href="{{ route('vendordashboard') }}">Dashboard</a></li>
+                            <li><a class="lan-4" href="{{ route('vendorProfileedit') }}">Profile Edit</a></li>
                         @elseif(Auth::user()->role === "admin")
                             <li><a class="lan-4" href="{{ route('admindashboard') }}">Dashboard</a></li>
+                            <li><a class="lan-4" href="{{ route('adminProfileedit') }}">Profile Edit</a></li>
+                        @elseif(Auth::user()->role === "user")
+                            <li><a class="lan-4" href="{{ route('userdashboard') }}">Dashboard</a></li>
+                            <li><a class="lan-4" href="{{ route('userProfileedit') }}">Profile Edit</a></li>
                         @endif
 
                     </ul>
@@ -324,6 +338,7 @@
 <!-- Theme js-->
 <script src="{{ asset('backend_assets/js/script.js') }}"></script>
 <script src="{{ asset('backend_assets/js/theme-customizer/customizer.js') }}"></script>
+
 <!-- Plugin used-->
 <script>new WOW().init();</script>
 </body>

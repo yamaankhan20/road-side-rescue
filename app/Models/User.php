@@ -59,4 +59,11 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function details(){
+        return $this->hasOne('App\Models\UserDetails');
+    }
+    public function profile_pic()
+    {
+        return $this->hasOne('App\Models\UserProfilePic');
+    }
 }

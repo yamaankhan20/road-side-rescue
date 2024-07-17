@@ -22,7 +22,7 @@ class SocialController extends Controller
         $user = User::where('email', $googleUser->email)->first();
         if(!$user)
         {
-          $user = User::create(['name' => $googleUser->name, 'email' => $googleUser->email, 'provider_id' => $googleUser->id , 'password' => \Hash::make(rand(100000,999999))]);
+          $user = User::create(['name' => $googleUser->name, 'email' => $googleUser->email, 'provider_id' => $googleUser->id , 'password' => \Hash::make(rand(100000,999999)), 'is_verified' => "1"]);
         }
         Auth::login($user);
         return redirect()->intended("admin-dashboard");
@@ -30,7 +30,7 @@ class SocialController extends Controller
 
     public function redirectToGoogleLogin()
     {
-        // return Socialite::driver('google')->redirect(); 
+        // return Socialite::driver('google')->redirect();
         return Socialite::driver('google')->with(['redirect_uri' => config('services.google.additional_redirect')])->redirect();
     }
 
@@ -40,15 +40,15 @@ class SocialController extends Controller
         $googleUser = Socialite::driver('google')->stateless()->with(['redirect_uri' => config('services.google.additional_redirect')])->user();
         $user = User::where('email', $googleUser->email)->first();
         if (!$user) {
-            
+
             return redirect()->route('register')->with('error', 'User not registered.');
         } else {
             Auth::login($user);
             return redirect()->intended("admin-dashboard");
         }
     }
-    
-    
+
+
     public function redirectToFacebook()
     {
         return Socialite::driver('facebook')->redirect();
