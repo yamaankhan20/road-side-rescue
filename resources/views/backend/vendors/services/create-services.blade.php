@@ -38,12 +38,20 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label>Category</label>
-                                            <select class="form-select" name="category_id">
+                                            <select class="form-select" name="category_id" required>
                                                 <option value="selected" disabled selected>Select</option>
                                                 @foreach($Category as $key => $Categories)
                                                     <option value="{{$Categories->id}}">{{$Categories->category_name}}</option>
                                                 @endforeach
                                             </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-3">
+                                            <label>Enter Location</label>
+                                            <input id="location_map" class="form-control" name="location" type="text" placeholder="Enter Location" required>
                                         </div>
                                     </div>
                                 </div>
@@ -71,4 +79,5 @@
         </div>
         <!-- Container-fluid Ends-->
     </div>
+
 @endsection

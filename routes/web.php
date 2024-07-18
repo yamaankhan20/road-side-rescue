@@ -23,6 +23,7 @@ use App\Http\Middleware\UserMiddleware;
 
 
 Route::get('/' ,[WebsiteController::class ,'index' ])->name('frontendhome');
+Route::get('/requested-services' ,[WebsiteController::class ,'requested_services' ])->name('requested-services');
 
 
 /*

@@ -9,10 +9,19 @@
                     <p class="ft-18">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed<br> diam nonumy eirm tempor Invidunt.</p>
                 </div>
                 <div class="bn_form">
-                    <form action="" class="form" method="post">
-                        <div class="field loct"><input class="form-control" name="location" type="text" placeholder="Enter your address" required></div>
-                        <div class="field srv"><select class="form-control" name="serv"><option>Choose a service</option><option>Service 1</option><option>Service 2</option><option>Service 3</option><option>Service 5</option><option>Service 6</option></select></div>
-                        <p><input class="btn_bn" name="submit" type="submit" value="Search"></p>
+                    <form action="{{route('requested-services')}}" class="form" method="GET">
+                        <div class="field loct">
+                            <input id="location_map" class="form-control" name="location" type="text" placeholder="Enter your address" required>
+                        </div>
+                        <div class="field srv">
+                            <select class="form-control" name="serv" required>
+                                <option value="null" disabled selected>Choose a service</option>
+                                @foreach($data_category as $key => $category)
+                                    <option value="{{$category->id}}">{{$category->category_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <p><input class="btn_bn" type="submit" value="Search"></p>
                     </form>
                 </div>
             </div>
@@ -156,4 +165,17 @@
 </section>
 
 <section class="secLoct" style="background-image: url('{{ asset('frontend_assets/images/map.jpg') }}');"></section>
+
+<script>
+
+    async function AutoFill() {
+        const fromInput = document.getElementById('location_map');
+        const fromAutocomplete = new google.maps.places.Autocomplete(fromInput);
+    }
+
+    window.onload = AutoFill;
+
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAF9q3rW1aL52AJ_Yy2KIYVKQyjNn7PLIs&libraries=places&callback=initMap" async defer loading="async"></script>
 @endsection

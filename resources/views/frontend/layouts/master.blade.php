@@ -12,7 +12,7 @@
 		<script type="text/javascript" src="{{ asset('frontend_assets/js/bootstrap.min.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('frontend_assets/js/owl.carousel.min.js') }}"></script>
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js" integrity="sha512-yFjZbTYRCJodnuyGlsKamNE/LlEaEAxSUDe5+u61mV8zzqJVFOH7TnULE2/PP/l5vKWpUNnF4VGVkXh3MjgLsg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	</head>
+    </head>
 	<body>
 
 		<header id="masthead" class="site-header navbar-static-top navbar-light" role="banner">
@@ -170,5 +170,7 @@
 		</footer>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script type="text/javascript" src="{{ asset('frontend_assets/js/script.js') }}"></script>
-	</body>
+
+
+    </body>
 </html>

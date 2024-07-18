@@ -339,7 +339,19 @@
 <script src="{{ asset('backend_assets/js/script.js') }}"></script>
 <script src="{{ asset('backend_assets/js/theme-customizer/customizer.js') }}"></script>
 
+
 <!-- Plugin used-->
 <script>new WOW().init();</script>
+  <script>
+
+      async function initMap() {
+          const fromInput = document.getElementById('location_map');
+          const fromAutocomplete = new google.maps.places.Autocomplete(fromInput);
+      }
+
+      window.onload = initMap;
+
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAF9q3rW1aL52AJ_Yy2KIYVKQyjNn7PLIs&libraries=places&callback=initMap" async defer loading="async"></script>
 </body>
 </html>

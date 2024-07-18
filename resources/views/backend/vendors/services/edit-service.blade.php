@@ -56,6 +56,14 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="mb-3">
+                                            <label>Enter Location</label>
+                                            <input value="{{$service->location}}" id="location_map" class="form-control" name="location" type="text" placeholder="Enter Location" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-3">
                                             <label>Enter some Details</label>
                                             <textarea class="form-control" id="services_description" name="description" rows="3">{{$service->description}}</textarea>
                                         </div>
