@@ -29,7 +29,8 @@ class ProfileditController extends Controller
                 'city' => $request->input('city'),
                 'postal_code' => $request->input('postal_code'),
                 'country' => $request->input('country'),
-                'about_me' => $request->input('about_me')
+                'about_me' => $request->input('about_me'),
+                'apartment' => $request->input('apartment')
             ]);
 
         $updated_user = DB::table('users')

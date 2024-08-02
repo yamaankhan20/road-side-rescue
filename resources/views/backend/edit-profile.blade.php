@@ -73,34 +73,15 @@
                             <input value="{{$user_details[0]['phone']}}" name="phone" class="form-control" type="number" placeholder="Phone Number">
                           </div>
                         </div>
-                        <div class="col-md-6 col-sm-12">
-                          <div class="mb-3">
-                            <label class="form-label">Address</label>
-                            <input value="{{$user_details[0]['address']}}" name="address" class="form-control" type="text" placeholder="Home Address">
-                          </div>
-                        </div>
-                        <div class="col-sm-6 col-md-6">
-                          <div class="mb-3">
-                            <label class="form-label">Postal Code</label>
-                            <input value="{{$user_details[0]['postal_code']}}" name="postal_code" class="form-control" type="number" placeholder="ZIP Code">
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="mb-3">
-                            <label class="form-label">Country</label>
-                            <select name="country" class="form-control btn-square" id="country" onchange="fetchCities()">
-                              <option value="" disabled selected>--Select--</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="col-sm-6 col-md-6">
-                          <div class="mb-3">
-                            <label class="form-label">City</label>
-                            <select name="city" class="form-control btn-square" id="city">
-                              <option value="" disabled selected>--Select--</option>
-                            </select>
-                          </div>
-                        </div>
+
+{{--                        <div class="col-sm-6 col-md-6">--}}
+{{--                          <div class="mb-3">--}}
+{{--                            <label class="form-label">City</label>--}}
+{{--                            <select name="city" class="form-control btn-square" id="city">--}}
+{{--                              <option value="" disabled selected>--Select--</option>--}}
+{{--                            </select>--}}
+{{--                          </div>--}}
+{{--                        </div>--}}
                         <div class="col-md-12">
                           <div>
                             <label class="form-label">About Me</label>
@@ -108,6 +89,42 @@
                           </div>
                         </div>
                       </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <h2>Billing Details</h2>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Address</label>
+                                    <input value="{{$user_details[0]['address']}}" name="address" class="form-control" type="text" placeholder="Home Address">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Postal Code</label>
+                                    <input value="{{$user_details[0]['postal_code']}}" name="postal_code" class="form-control" type="number" placeholder="ZIP Code">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Your Location</label>
+                                    <input class="form-control" type="text" id="location_map" name="country" value="{{$user_details[0]["country"]}}" placeholder="Enter location" required>
+                                    {{--                            <select name="country" class="form-control btn-square" id="country" onchange="fetchCities()">--}}
+                                    {{--                              <option value="" disabled selected>--Select--</option>--}}
+                                    {{--                            </select>--}}
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Apartment, suite, etc. (optional)</label>
+                                    <input value="{{$user_details[0]['apartment']}}" name="apartment" class="form-control" type="text" placeholder="Apartment, suite, etc. (optional)">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-footer text-end">
                       <button class="btn btn-primary" type="submit">Update Profile</button>
@@ -123,85 +140,85 @@
 
 <script>
 
-        function fetchCountry(selectedCountry) {
-            const countryCode = document.getElementById('country');
+        {{--function fetchCountry(selectedCountry) {--}}
+        {{--    const countryCode = document.getElementById('country');--}}
 
-            fetch('{{ route("get-country") }}', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-            })
-            .then(response => response.json())
-            .then(data => {
-                countryCode.innerHTML = '<option disabled>Select Country</option>';
-                if (data.data) {
-                    data.data.forEach(country => {
-                        const option = document.createElement('option');
-                        option.value = country.name;
-                        option.textContent = country.name;
-                        if (country.name === selectedCountry) {
-                            option.selected = true;
-                        }
-                        countryCode.appendChild(option);
-                    });
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching countries:', error);
-            });
-        }
+        {{--    fetch('{{ route("get-country") }}', {--}}
+        {{--        method: 'GET',--}}
+        {{--        headers: {--}}
+        {{--            'Content-Type': 'application/json',--}}
+        {{--            'X-CSRF-TOKEN': '{{ csrf_token() }}'--}}
+        {{--        },--}}
+        {{--    })--}}
+        {{--    .then(response => response.json())--}}
+        {{--    .then(data => {--}}
+        {{--        countryCode.innerHTML = '<option disabled>Select Country</option>';--}}
+        {{--        if (data.data) {--}}
+        {{--            data.data.forEach(country => {--}}
+        {{--                const option = document.createElement('option');--}}
+        {{--                option.value = country.name;--}}
+        {{--                option.textContent = country.name;--}}
+        {{--                if (country.name === selectedCountry) {--}}
+        {{--                    option.selected = true;--}}
+        {{--                }--}}
+        {{--                countryCode.appendChild(option);--}}
+        {{--            });--}}
+        {{--        }--}}
+        {{--    })--}}
+        {{--    .catch(error => {--}}
+        {{--        console.error('Error fetching countries:', error);--}}
+        {{--    });--}}
+        {{--}--}}
 
-        function fetchCities(selectedCountry, selectedCity) {
-            const countryCode = document.getElementById('country').value || selectedCountry;
-            const citySelect = document.getElementById('city');
+        {{--function fetchCities(selectedCountry, selectedCity) {--}}
+        {{--    const countryCode = document.getElementById('country').value || selectedCountry;--}}
+        {{--    const citySelect = document.getElementById('city');--}}
 
-            fetch('{{ route('get-cities') }}', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                body: JSON.stringify({ country_code: countryCode })
-            })
-            .then(response => response.json())
-            .then(data => {
-                citySelect.innerHTML = '<option disabled>Select City</option>';
-                if (data.data) {
-                    data.data.forEach(city => {
-                        const option = document.createElement('option');
-                        option.value = city;
-                        option.textContent = city;
-                        if (city === selectedCity) {
-                            option.selected = true;
-                        }
-                        citySelect.appendChild(option);
-                    });
-                } else if (data.error) {
-                    const option = document.createElement('option');
-                    option.value = data.error;
-                    option.textContent = data.error;
-                    citySelect.appendChild(option);
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching cities:', error);
-            });
-        }
+        {{--    fetch('{{ route('get-cities') }}', {--}}
+        {{--        method: 'POST',--}}
+        {{--        headers: {--}}
+        {{--            'Content-Type': 'application/json',--}}
+        {{--            'X-CSRF-TOKEN': '{{ csrf_token() }}'--}}
+        {{--        },--}}
+        {{--        body: JSON.stringify({ country_code: countryCode })--}}
+        {{--    })--}}
+        {{--    .then(response => response.json())--}}
+        {{--    .then(data => {--}}
+        {{--        citySelect.innerHTML = '<option disabled>Select City</option>';--}}
+        {{--        if (data.data) {--}}
+        {{--            data.data.forEach(city => {--}}
+        {{--                const option = document.createElement('option');--}}
+        {{--                option.value = city;--}}
+        {{--                option.textContent = city;--}}
+        {{--                if (city === selectedCity) {--}}
+        {{--                    option.selected = true;--}}
+        {{--                }--}}
+        {{--                citySelect.appendChild(option);--}}
+        {{--            });--}}
+        {{--        } else if (data.error) {--}}
+        {{--            const option = document.createElement('option');--}}
+        {{--            option.value = data.error;--}}
+        {{--            option.textContent = data.error;--}}
+        {{--            citySelect.appendChild(option);--}}
+        {{--        }--}}
+        {{--    })--}}
+        {{--    .catch(error => {--}}
+        {{--        console.error('Error fetching cities:', error);--}}
+        {{--    });--}}
+        {{--}--}}
 
         // Initialize the functions with the selected country and city
-        document.addEventListener('DOMContentLoaded', function() {
-            const selectedCountry = '{{ $user_details[0]["country"] }}';
-            const selectedCity = '{{ $user_details[0]["city"] }}';
-            fetchCountry(selectedCountry);
-            fetchCities(selectedCountry, selectedCity);
+        {{--document.addEventListener('DOMContentLoaded', function() {--}}
+        {{--    const selectedCountry = '{{ $user_details[0]["country"] }}';--}}
+        {{--    const selectedCity = '{{ $user_details[0]["city"] }}';--}}
+        {{--    fetchCountry(selectedCountry);--}}
+        {{--    fetchCities(selectedCountry, selectedCity);--}}
 
-            // Add event listener to fetch cities when country changes
-            document.getElementById('country').addEventListener('change', function() {
-                fetchCities(this.value);
-            });
-        });
+        {{--    // Add event listener to fetch cities when country changes--}}
+        {{--    document.getElementById('country').addEventListener('change', function() {--}}
+        {{--        fetchCities(this.value);--}}
+        {{--    });--}}
+        {{--});--}}
 
 
         jQuery(document).ready(function() {
@@ -223,6 +240,8 @@
                 }
             });
         });
+
+
 </script>
 
 

@@ -3,6 +3,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Roadside Rescue - Home</title>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="icon" href="{{ asset('frontend_assets/images/logo.png') }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('frontend_assets/images/logo.png') }}" type="image/x-icon">
 		<link rel="stylesheet" type="text/css" href="{{ asset('frontend_assets/css/bootstrap.min.css') }}">
@@ -12,6 +13,8 @@
 		<script type="text/javascript" src="{{ asset('frontend_assets/js/bootstrap.min.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('frontend_assets/js/owl.carousel.min.js') }}"></script>
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js" integrity="sha512-yFjZbTYRCJodnuyGlsKamNE/LlEaEAxSUDe5+u61mV8zzqJVFOH7TnULE2/PP/l5vKWpUNnF4VGVkXh3MjgLsg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     </head>
 	<body>
 
@@ -31,7 +34,7 @@
 	                <div id="main-nav" class="collapse navbar-collapse justify-content-center">
 	                	<ul id="menu-main-menu" class="navbar-nav">
 	                		<li class="menu-item">
-	                			<a href="javascript:;" class="nav-link">Home</a>
+	                			<a href="{{route('frontendhome')}}" class="nav-link">Home</a>
 	                		</li>
 	                		<li class="menu-item">
 	                			<a href="javascript:;" class="nav-link">About us</a>
@@ -168,7 +171,6 @@
 				</div>
 			</div>
 		</footer>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script type="text/javascript" src="{{ asset('frontend_assets/js/script.js') }}"></script>
 
 

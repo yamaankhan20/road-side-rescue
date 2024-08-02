@@ -9,6 +9,11 @@
                     <p class="ft-18">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed<br> diam nonumy eirm tempor Invidunt.</p>
                 </div>
                 <div class="bn_form">
+                    @if (session('location'))
+                        <span class="" role="alert">
+                            <strong> {{ session('location') }}</strong>
+                        </span>
+                    @endif
                     <form action="{{route('requested-services')}}" class="form" method="GET">
                         <div class="field loct">
                             <input id="location_map" class="form-control" name="location" type="text" placeholder="Enter your address" required>

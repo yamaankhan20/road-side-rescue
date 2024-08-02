@@ -4,6 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\EmailVerification;
+use App\Models\UserDetails;
+use App\Models\UserProfilepic;
+use App\Models\VendorStatus;
 use Illuminate\Http\Request;
 
 use App\Models\User;
@@ -37,8 +40,23 @@ class RegisterController extends Controller
             'password' => bcrypt($request->input('password')),
             'role' => $request->input('role'),
         ];
+
         // Create a new user record
         $user = User::create($data);
+
+        $user_details = new UserDetails();
+        $user_details->user_id = $user->id;
+        $user_details->save();
+
+        $user_pic = new UserProfilepic();
+        $user_pic->user_id = $user->id;
+        $user_pic->save();
+
+        if ($user->role === 'vendor'){
+            $vendor_status = new VendorStatus();
+            $vendor_status->vendor_id = $user->id;
+            $vendor_status->save();
+        }
 
         return response()->json(['success' => true, 'message' => 'User Registered Successfully.', 'data'=> $user], 200);
     }

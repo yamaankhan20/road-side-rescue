@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -69,9 +70,17 @@ class LoginController extends Controller
         if (auth()->attempt($request->only('email', 'password'))) {
             $user = Auth::user();
             if($user->is_verified === 1){
+
+
                 if ($user-> role === 'admin') {
                     return redirect()->route('admindashboard');
                 } elseif ($user-> role === 'vendor') {
+
+                    DB::table('vendor_status')
+                        ->where('vendor_id', $user->id)
+                        ->update([
+                            'status' => "active",
+                        ]);
                     return redirect()->route('vendordashboard');
                 } else {
                     return redirect()->route('userdashboard');
@@ -104,6 +113,15 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
+        $user = Auth::user();
+        if ($user->role === 'vendor'){
+            DB::table('vendor_status')
+                ->where('vendor_id', $user->id)
+                ->update([
+                    'status' => "in_active",
+                ]);
+        }
+
         $this->guard()->logout();
 
         $request->session()->invalidate();
