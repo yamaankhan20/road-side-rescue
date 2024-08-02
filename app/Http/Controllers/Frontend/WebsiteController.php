@@ -100,7 +100,7 @@ class WebsiteController extends Controller
 
     private function getCoordinatesFromLocation($location)
     {
-        $apiKey = 'AIzaSyAF9q3rW1aL52AJ_Yy2KIYVKQyjNn7PLIs';
+        $apiKey = '';
         $url = "https://maps.googleapis.com/maps/api/geocode/json?address=".urlencode($location)."&key=".$apiKey;
 
         $response = file_get_contents($url);
