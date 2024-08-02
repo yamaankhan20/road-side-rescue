@@ -411,5 +411,5 @@
 
     </script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAF9q3rW1aL52AJ_Yy2KIYVKQyjNn7PLIs&libraries=places&callback=initMap" defer ></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=&libraries=places&callback=initMap" defer ></script>
 @endsection
