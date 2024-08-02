@@ -47,7 +47,7 @@ class VendorController extends Controller
         $user_profile_pic = UserProfilepic::where('user_id',Auth::id())->get();
         $data =  [
 
-            "title" => "User Profile | Roadside Rescue",
+            "title" => "Vendor Profile | Roadside Rescue",
             "breadcrumb" =>"User Profile"
 
         ];
@@ -55,4 +55,8 @@ class VendorController extends Controller
         return view('backend.edit-profile' ,$data, compact('user', "user_details", "user_profile_pic"));
 
     }
+
+
+
+
 }

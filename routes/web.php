@@ -11,6 +11,9 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\Auth\SocialController;
+use App\Http\Controllers\Backend\user\CardController;
+use App\Http\Controllers\Backend\user\BillingController;
+
 use App\Http\Controllers\MailController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\VendorMiddleware;
@@ -24,7 +27,7 @@ use App\Http\Middleware\UserMiddleware;
 
 Route::get('/' ,[WebsiteController::class ,'index' ])->name('frontendhome');
 Route::get('/requested-services' ,[WebsiteController::class ,'requested_services' ])->name('requested-services');
-
+Route::get('/services-requested' ,[WebsiteController::class ,'Get_all_services_by_ID' ])->name('services_vendorID');
 
 /*
 ================================
@@ -68,8 +71,12 @@ Route::middleware([UserMiddleware::class])->group(function () {
     Route::get('/user-dashboard', [UserController::class, 'dashboard'])->name('userdashboard');
     Route::get('/user-profile-setting', [UserController::class, 'Profile_edit'])->name('userProfileedit');
 
-
-
+    Route::get('/card-add', [CardController::class, 'create'])->name('cards.add');
+    Route::Post('/card-add-details', [CardController::class, 'store'])->name('cards.store');
+    Route::get('/cards', [CardController::class, 'index'])->name('cards');
+    Route::get('/edit-cards/{card}/edit', [CardController::class, 'edit'])->name('cards.edit');
+    Route::post('/update-cards/{card}/', [CardController::class, 'update'])->name('cards.update');
+    Route::delete('/delete-cards/{card}', [CardController::class, 'destroy'])->name('cards.destroy');
 
 
 });

@@ -18,4 +18,7 @@ class Service extends Model
     {
          return $this->belongsTo(Category::class);
     }
+    public function vendor_all() {
+        return $this->hasMany(User::class, 'id', 'vendor_id'); // Update this if needed
+    }
 }

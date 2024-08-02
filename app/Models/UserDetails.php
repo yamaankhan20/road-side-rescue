@@ -16,7 +16,8 @@ class UserDetails extends Model
         "city",
         "postal_code",
         "country",
-        "about_me"
+        "about_me",
+        "apartment"
     ];
 
     public function user()

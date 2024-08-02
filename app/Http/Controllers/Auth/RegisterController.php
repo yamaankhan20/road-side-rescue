@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\UserDetails;
 use App\Models\UserProfilepic;
+use App\Models\VendorStatus;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -91,6 +93,12 @@ class RegisterController extends Controller
         $user_pic->user_id = $user_data->id;
         $user_pic->save();
 
+        if ($user_data->role === 'vendor'){
+            $vendor_status = new VendorStatus();
+            $vendor_status->vendor_id = $user_data->id;
+            $vendor_status->save();
+        }
+
         return $user_data;
     }
 
@@ -134,6 +142,11 @@ class RegisterController extends Controller
             if ($user->role == 'admin') {
                 return redirect()->route('admindashboard');
             } elseif ($user->role == 'vendor') {
+                DB::table('vendor_status')
+                    ->where('vendor_id', $user->id)
+                    ->update([
+                        'status' => "active",
+                    ]);
                 return redirect()->route('vendordashboard');
             } else {
                 return redirect()->route('userdashboard');
@@ -175,6 +188,11 @@ class RegisterController extends Controller
                 if ($user->role == 'admin') {
                     return redirect()->route('admindashboard');
                 } elseif ($user->role == 'vendor') {
+                    DB::table('vendor_status')
+                        ->where('vendor_id', $user->id)
+                        ->update([
+                            'status' => "active",
+                        ]);
                     return redirect()->route('vendordashboard');
                 } else {
                     return redirect()->route('userdashboard');
